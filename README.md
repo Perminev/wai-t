@@ -1,1 +1,1 @@
-# weatherappinterminal_beta
+# Weather app in terminal
