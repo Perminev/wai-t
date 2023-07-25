@@ -1,1 +1,3 @@
-# Weather app in terminal
+#```
+weatherappinterminal
+```
