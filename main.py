@@ -1,9 +1,7 @@
 #at 
 import requests
 from time import sleep
-
-MIST = ['mist','smoke','haze','dust','fog','sand','sand/dust whirls','volcanic ash','squalls','tornado']
-CLOUD = ['few clouds', 'scattered clouds', 'broken clouds', 'overcast clouds']
+from colorama import Fore, Style
 
 def get_weather(city, api_key):
     base_url = "http://api.openweathermap.org/data/2.5/weather"
@@ -26,43 +24,68 @@ def get_weather(city, api_key):
         return None
 
 def main():
-    api_key = "535c531572e34625a59a0c949f9065ac"
+    try:
+        with open("api_key.txt", "r") as f:
+            api_key = f.read()
+    except FileNotFoundError:
+        print("API ключ не найден. Введите его ниже: ")
+        api_key = input()
+        with open("api_key.txt", "w") as f:
+            f.write(api_key)
+            
     city = input("Введите название города: ")
 
     weather_info = get_weather(city, api_key)
 
     if weather_info:
+            if city == "about":
+                    print(Fore.GREEN)
+                    print("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
+                    print("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
+                    print("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
+                    print(Fore.GREEN + "⢠⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⢤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⢻⠀⠀⠀⠀⠀⠀")
+                    print(Fore.GREEN + "⠈⣆⢣⠀⠀⠀⠀⠀⠀⠀⠀⢀⣏⠏⠀⠀⠀⠀⠀⠀⢠⠤⡄⠀⠀⠀⠀⠀⠀⠀⠀⢈⠟⠒⠒⡄⠀⠀")
+                    print(Fore.GREEN + "⠀⠸⡜⡆⠀⠀⢠⣄⠀⠀⠀⡞⡜⠀⠀⢀⣀⣀⠀⠀⣠⢭⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⢸⠉⠉⠀⠀⠀" + "\033[1m" + "  APP | weatherappinterminal 2.0v" + "\033[0m")
+                    print(Fore.GREEN + "⠀⠀⢱⢱⠀⣠⢣⡌⢦⠀⡸⡼⠁⠀⢰⡟⢹⢸⠀⠀⡇⢯⠀⣀⣀⣀⣀⢄⡀⠀⠀⢸⢸⠀⠀⠀⠀" + "\033[1m" + "   DEV | perminev by"  + "\033[0m")
+                    print(Fore.GREEN + " ⠀⠀⢇⣷⣣⠃⠘⢆⠳⢱⠁⠀⠀⢸⣇⢸⢸⠀⠀⡇⢸⠀⠙⠒⠒⠂⠈⠁⠀⠀⡞⢸⠀⢀⣀⠀" + "\033[1m" + "   DAT | 2023"  + "\033[0m")
+                    print(Fore.GREEN + " ⠀⠀⠘⣴⠃⠀⠀⠈⢧⠇⠀⠀⠀⠈⠛⠛⠫⠽⠀⠳⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⢱⡘⠒⢉⡼⠀⠀")
+                    print(Fore.GREEN + "  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠀⠀⠀⠀⠀⠀")
+                    print(Style.RESET_ALL)                                                          
+                    quit()
+                    
+                    
             temperature, humidity, wind_speed, description = weather_info
             if description == "scattered clouds":
-                    print(f"Температура в городе {city}: {temperature}°C")
-                    print(f"Влажность воздуха: {humidity}%")
-                    print(f"Скорость ветра: {wind_speed} м/с")
-                    print(f"Погода: {description.capitalize()}")
-                    print("⡇⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
-                    print("⡇⠀⠀⠀⠀⣠⣾⡿⠟⠛⠛⠻⢿⣷⣄⠀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀")
-                    print("⡇⠀⠀⠀⣴⡿⠋⠀⠀⠀⠀⠀⠀⠙⣿⣿⠿⠿⠿⢿⣦⡀⠀⠀⠀⠀")
-                    print("⡇⠀⠀⣠⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⢹⣿⣀⠀⠀⠀")
-                    print("⣇⣾⡿⠟⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠻⢿⣷⡀")
-                    print("⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣷")
-                    print("⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡿")
-                    print("⡏⢿⣷⣦⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣴⣾⡿⠁")
-                    print("  ⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀")
+                    #
+                print(f"Температура в городе {city}: {temperature}°C")
+                print(f"Влажность воздуха: {humidity}%")
+                print(f"Скорость ветра: {wind_speed} м/с")
+                print(f"Погода: {description.capitalize()}")
+                print("⡇⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
+                print("⡇⠀⠀⠀⠀⣠⣾⡿⠟⠛⠛⠻⢿⣷⣄⠀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀")
+                print("⡇⠀⠀⠀⣴⡿⠋⠀⠀⠀⠀⠀⠀⠙⣿⣿⠿⠿⠿⢿⣦⡀⠀⠀⠀⠀")
+                print("⡇⠀⠀⣠⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⢹⣿⣀⠀⠀⠀")
+                print("⣇⣾⡿⠟⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠻⢿⣷⡀")
+                print("⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣷")
+                print("⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡿")
+                print("⡏⢿⣷⣦⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣴⣾⡿⠁")
+                print("  ⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀")
 
                     
-            elif description == "broken clouds":
-                    print(f"Температура в городе {city}: {temperature}°C")
-                    print(f"Влажность воздуха: {humidity}%")
-                    print(f"Скорость ветра: {wind_speed} м/с")
-                    print(f"Погода: {description.capitalize()}")
-                    print("⡇⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
-                    print("⡇⠀⠀⠀⠀⣠⣾⡿⠟⠛⠛⠻⢿⣷⣄⠀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀")
-                    print("⡇⠀⠀⠀⣴⡿⠋⠀⠀⠀⠀⠀⠀⠙⣿⣿⠿⠿⠿⢿⣦⡀⠀⠀⠀⠀")
-                    print("⡇⠀⠀⣠⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⢹⣿⣀⠀⠀⠀")
-                    print("⣇⣾⡿⠟⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠻⢿⣷⡀")
-                    print("⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣷")
-                    print("⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡿")
-                    print("⡏⢿⣷⣦⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣴⣾⡿⠁")
-                    print("  ⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀")
+            if description == "broken clouds":
+                print(f"Температура в городе {city}: {temperature}°C")
+                print(f"Влажность воздуха: {humidity}%")
+                print(f"Скорость ветра: {wind_speed} м/с")
+                print(f"Погода: {description.capitalize()}")
+                print("⡇⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
+                print("⡇⠀⠀⠀⠀⣠⣾⡿⠟⠛⠛⠻⢿⣷⣄⠀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀")
+                print("⡇⠀⠀⠀⣴⡿⠋⠀⠀⠀⠀⠀⠀⠙⣿⣿⠿⠿⠿⢿⣦⡀⠀⠀⠀⠀")
+                print("⡇⠀⠀⣠⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⢹⣿⣀⠀⠀⠀")
+                print("⣇⣾⡿⠟⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠻⢿⣷⡀")
+                print("⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣷")
+                print("⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡿")
+                print("⡏⢿⣷⣦⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣴⣾⡿⠁")
+                print("  ⠈⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠀⠀")
                    
             elif description == "overcast clouds":
                     print(f"Температура в городе {city}: {temperature}°C")
@@ -1063,6 +1086,7 @@ def main():
                     print("⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
                     print("⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")
                     print("⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀")  
+
     else:
         print("Не удалось получить данные о погоде. Проверьте название города и API ключ.")
 
