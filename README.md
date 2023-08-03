@@ -108,7 +108,7 @@ db.create_all()
 https://openweathermap.org/
 ` <br />
 2 Создайте аккаунт <br />
-3 Перейдите во вкладку 'My API keys' <br />
+3 Перейдите в каталог 'My API keys' <br />
 4 Введите имя вашего API-ключа и нажмите на кнопку 'Generate' <br />
 5 Поздраляем API-ключ создан! (этот API-ключ вам понадобится позже) <br />
 ### Windows:
