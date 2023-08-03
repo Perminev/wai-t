@@ -89,16 +89,6 @@ pip install -r requirements.txt
 python main.py
 ```
 
-###### p.s. On the python 3.10 and newer stable working not garanted and if you open diary.db do this five commands in terminal:
-
-```
-cd YOUR_PROJECT_FOLDER
-python
-from main import app, db
-app.app_context().push()
-db.create_all()
-```
-
 ### Как использовать?
 
 ### API-ключ
@@ -178,6 +168,16 @@ pip install -r requirements.txt
 `Далее вам нужно запустить программу через эту команду`
 ```
 python main.py
+```
+
+###### p.s. On the python 3.10 and newer stable working not garanted and if you open diary.db do this five commands in terminal:
+
+```
+cd YOUR_PROJECT_FOLDER
+python
+from main import app, db
+app.app_context().push()
+db.create_all()
 ```
 
 ###### p.s. На python 3.10 и новее стабильная работа не гарантируется и если вы открыли файл diary.db и у вас перестал работать код впишите эти 5 команд :
