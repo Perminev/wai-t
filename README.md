@@ -55,7 +55,7 @@ git clone https://github.com/Perminev/wai-t
 ```
 `Second you need to install requirements`
 ```
-cd wai-t-main
+cd wai-t
 pip install -r requirements.txt
 ```
 `Next you need to run it`
@@ -136,7 +136,7 @@ git clone https://github.com/Perminev/wai-t
 ```
 `Далее вам нужно установить необходимые для работы проекта библиотеки`
 ```
-cd wai-t-main
+cd wai-t
 pip install -r requirements.txt
 ```
 `Далее вам нужно запустить программу через эту команду`
